@@ -1,0 +1,7 @@
+taxes.api/bin
+taxes.api/obj
+taxes.services/bin
+taxes.services/obj
+taxes.test/bin
+taxes.test/obj
+.vscode
