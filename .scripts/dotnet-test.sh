@@ -1,2 +1,2 @@
-cd Taxes.Test/
+cd taxes.test/
 dotnet test

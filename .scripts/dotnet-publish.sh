@@ -1,2 +1,2 @@
-dotnet publish /Taxes.api/ -c Release -o /bin/Docker
-dotnet publish /Taxes.services/ -c Release -o /bin/Docker
+dotnet publish taxes.api/ -c Release -o /bin/Docker
+dotnet publish taxes.services/ -c Release -o /bin/Docker

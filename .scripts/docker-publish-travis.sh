@@ -14,8 +14,8 @@ esac
 
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
-docker build -f /Taxes.api/Dockerfile.$DOCKER_ENV -t taxes-api:$DOCKER_TAG Taxes.api --no-cache
-docker build -f /Taxes.services/Dockerfile.$DOCKER_ENV -t taxes-services:$DOCKER_TAG Taxes.services --no-cache
+docker build -f /taxes.api/Dockerfile.$DOCKER_ENV -t taxes-api:$DOCKER_TAG Taxes.api --no-cache
+docker build -f /taxes.services/Dockerfile.$DOCKER_ENV -t taxes-services:$DOCKER_TAG Taxes.services --no-cache
 
 docker tag taxes-api:$DOCKER_TAG $DOCKER_USERNAME/taxes-api:$DOCKER_TAG
 docker tag taxes-services:$DOCKER_TAG $DOCKER_USERNAME/taxes-services:$DOCKER_TAG
