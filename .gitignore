@@ -8,3 +8,5 @@ taxes.test/obj
 /taxes.api/taxes.api.csproj.user
 /taxes.api/Properties/launchSettings.json
 /.vs/taxes/v15/Server/sqlite3
+/.vs/taxes/v15
+/.vs/config/applicationhost.config
