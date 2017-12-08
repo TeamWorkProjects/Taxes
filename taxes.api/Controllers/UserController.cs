@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using taxes.services.Context;
+using Microsoft.AspNetCore.Mvc;
+using taxes.services.Models;
 
 namespace taxes.api.Controllers
 {
@@ -13,5 +14,15 @@ namespace taxes.api.Controllers
             this.dbContext = dbContext;
         }
 
+        [Route("api/[Controller]/Add")]
+        public User AddUser(User entity)
+        {
+            if( entity != null)
+            {
+                dbContext.Users.Add(entity);
+                return entity;
+            }
+            return null;
+        }
     }
 }
