@@ -1,4 +1,4 @@
-namespace taxes.services.Context
+namespace taxes.services.Models
 {
     public class User
     {

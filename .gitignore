@@ -5,3 +5,8 @@ taxes.services/obj
 taxes.test/bin
 taxes.test/obj
 .vscode
+/taxes.api/taxes.api.csproj.user
+/taxes.api/Properties/launchSettings.json
+/.vs/taxes/v15/Server/sqlite3
+/.vs/taxes/v15
+/.vs/config/applicationhost.config

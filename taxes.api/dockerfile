@@ -1,0 +1,6 @@
+FROM microsoft/aspnetcore:2.0.0
+WORKDIR /dotnetapp
+COPY /bin/Docker .
+ENV ASPNETCORE_ENVIRONMENT  "docker"
+ENV ASPNETCORE_ENVIRONMENT "http://*:5000"
+ENTRYPOINT  "dotnet" "taxes.api.dll"

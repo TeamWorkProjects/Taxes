@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +31,9 @@ namespace taxes.api
             services.AddDbContext<ApplicationDbContext>(option =>
                 option.UseSqlServer(Configuration.GetConnectionString("DevelopConnection")));
             services.AddMvc();
+      services.AddDataProtection()
+        .PersistKeysToFileSystem(new DirectoryInfo(@"shared/directory")); // https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?tabs=aspnetcore1x
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
