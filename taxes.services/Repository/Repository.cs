@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,7 +20,7 @@ namespace taxes.services.Repository
         public T Create(T entity)
         {
             _dbSet.Add(entity);
-            _context.SaveChanges();
+            Save();
             return entity;
         }
 
@@ -29,7 +30,7 @@ namespace taxes.services.Repository
             if (entityToDelete!=null)
             {
                 _context.Entry(entityToDelete).State = EntityState.Deleted;
-                _context.SaveChanges();
+                Save();
             }
 
         }
@@ -43,8 +44,22 @@ namespace taxes.services.Repository
         {
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            Save();
             return entity;
+        }
+
+        private void Save()
+        {
+            try {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException exc) {
+                foreach(var validationErrors in exc.EntityValidationErrors) {
+                    foreach (var validationError in validationErrors.ValidationErrors){
+                        Console.WriteLine("Property: "+validationError.PropertyName+", Error: "+validationError.ErrorMessage);
+                    }
+                }
+            }
         }
     }
 }
