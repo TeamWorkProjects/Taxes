@@ -14,7 +14,7 @@ namespace taxes.api.Controllers
             this.dbContext = dbContext;
         }
 
-        [Route("api/[Controller]/Add")]
+        [HttpGet("Add")]
         public User AddUser(User entity)
         {
             if( entity != null)

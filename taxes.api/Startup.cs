@@ -28,11 +28,9 @@ namespace taxes.api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<ApplicationDbContext>(option =>
-                option.UseSqlServer(Configuration.GetConnectionString("DevelopConnection")));
+            services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DevelopConnection")));
             services.AddMvc();
-      services.AddDataProtection()
-        .PersistKeysToFileSystem(new DirectoryInfo(@"shared/directory")); // https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?tabs=aspnetcore1x
+            services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(@"shared/directory")); // https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/configuration/overview?tabs=aspnetcore1x
 
         }
 
