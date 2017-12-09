@@ -17,9 +17,19 @@ namespace taxes.api.Controllers
         [HttpGet("Add")]
         public User AddUser(User entity)
         {
-            if( entity != null)
+            if(ModelState.IsValid)
             {
                 dbContext.Users.Add(entity);
+                return entity;
+            }
+            return null;
+        }
+
+        public User DeleteUser(User entity)
+        {
+            if(ModelState.IsValid)
+            {
+                dbContext.Users.Remove(entity);
                 return entity;
             }
             return null;
