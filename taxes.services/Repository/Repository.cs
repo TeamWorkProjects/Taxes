@@ -4,7 +4,7 @@ using taxes.services.Context;
 
 namespace taxes.services.Repository
 {
-    class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private ApplicationDbContext context;
         private DbSet<T> dbSet;

@@ -4,7 +4,7 @@ using taxes.services.Context;
 
 namespace taxes.services.Repository
 {
-    class UnitOfWork
+    public class UnitOfWork
     {
         private ApplicationDbContext context = new ApplicationDbContext();
         private Repository<User> userRepository;
