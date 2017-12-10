@@ -1,35 +1,33 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Data.Entity.Validation;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+using taxes.services.Context;
 
 namespace taxes.services.Repository
 {
     class Repository<T> : IRepository<T> where T : class
     {
-        private DbContext _context;
-        private DbSet<T> _dbSet;
+        private ApplicationDbContext context;
+        private DbSet<T> dbSet;
 
-        public Repository(DbContext context)
+        public Repository(ApplicationDbContext context)
         {
-            _context = context;
-            _dbSet = context.Set<T>();
+            this.context = context;
+            dbSet = this.context.Set<T>();
         }
 
         public T Create(T entity)
         {
-            _dbSet.Add(entity);
+            dbSet.Add(entity);
             Save();
             return entity;
         }
 
         public void Delete(object id)
         {
-            T entityToDelete = _dbSet.Find(id);
+            T entityToDelete = dbSet.Find(id);
             if (entityToDelete!=null)
             {
-                _context.Entry(entityToDelete).State = EntityState.Deleted;
+                context.Entry(entityToDelete).State = EntityState.Deleted;
                 Save();
             }
 
@@ -37,21 +35,24 @@ namespace taxes.services.Repository
 
         public T GetById(object id)
         {
-            return _dbSet.Find(id);
+            return dbSet.Find(id);
         }
 
         public T Update(T entity)
         {
-            _dbSet.Attach(entity);
-            _context.Entry(entity).State = EntityState.Modified;
+            dbSet.Attach(entity);
+            context.Entry(entity).State = EntityState.Modified;
             Save();
             return entity;
         }
 
         private void Save()
         {
-            try {
-                _context.SaveChanges();
+            context.SaveChanges();
+            // there is no build entity validation in EF CORE
+            //https://github.com/aspnet/EntityFrameworkCore/issues/4434
+            /* try {
+                context.SaveChanges();
             }
             catch (DbEntityValidationException exc) {
                 foreach(var validationErrors in exc.EntityValidationErrors) {
@@ -59,7 +60,7 @@ namespace taxes.services.Repository
                         Console.WriteLine("Property: "+validationError.PropertyName+", Error: "+validationError.ErrorMessage);
                     }
                 }
-            }
+            }*/
         }
     }
 }

@@ -9,6 +9,6 @@ namespace taxes.services.Repository
         T Create(T entity);
         T Update(T entity);
         void Delete(object id);
-        T GetById(object id)
+        T GetById(object id);
     }
 }
