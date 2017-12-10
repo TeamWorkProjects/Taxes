@@ -15,6 +15,7 @@ namespace taxes.api.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public User AddUser(User entity)
         {
@@ -24,6 +25,12 @@ namespace taxes.api.Controllers
                 return entity;
             }
             return null;
+        }
+
+        [HttpGet]
+        public ActionResult RemoveUSer()
+        {
+            return View();
         }
     }
 }
