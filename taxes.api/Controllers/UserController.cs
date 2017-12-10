@@ -9,8 +9,13 @@ namespace taxes.api.Controllers
     public class UserController : Controller
     {
         private readonly UnitOfWork unitOfWork = new UnitOfWork();
-        
-        [Route("api/[Controller]/Add")]
+
+        [HttpGet]
+        public ActionResult AddUSer()
+        {
+            return View();
+        }
+        [HttpPost]
         public User AddUser(User entity)
         {
             if( entity != null)
