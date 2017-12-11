@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 
 namespace taxes.services.Security
 {
-    class PasswordHasher
+    public class PasswordHasher
     {
         private int saltSize = 32;
         private HashAlgorithm hash = new SHA256Managed();
