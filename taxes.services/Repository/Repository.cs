@@ -48,19 +48,15 @@ namespace taxes.services.Repository
 
         private void Save()
         {
-            context.SaveChanges();
-            // there is no build entity validation in EF CORE
-            //https://github.com/aspnet/EntityFrameworkCore/issues/4434
-            /* try {
+            try
+            {
                 context.SaveChanges();
             }
-            catch (DbEntityValidationException exc) {
-                foreach(var validationErrors in exc.EntityValidationErrors) {
-                    foreach (var validationError in validationErrors.ValidationErrors){
-                        Console.WriteLine("Property: "+validationError.PropertyName+", Error: "+validationError.ErrorMessage);
-                    }
-                }
-            }*/
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+            
         }
     }
 }

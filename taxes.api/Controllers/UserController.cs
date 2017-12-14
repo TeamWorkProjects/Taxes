@@ -20,7 +20,7 @@ namespace taxes.api.Controllers
         }
 
         [HttpPost]
-        public User AddUser(UserViewModel newUSer)
+        public ViewResult AddUser(UserViewModel newUSer)
         {
             if(ModelState.IsValid)
             {
@@ -29,19 +29,19 @@ namespace taxes.api.Controllers
                                         Password = hasher.GenerateHash(newUSer.Password),
                                         Salt=hasher.Salt};
                 unitOfWork.UserRepository.Create(entity);
-                return entity;
+                return View(viewName: "AddUserSuccess");
             }
-            return null;
+            return View();
         }
 
         [HttpGet]
-        public ActionResult RemoveUSer()
+        public ActionResult RemoveUser()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult RemoveUSer(object id)
+        public ActionResult RemoveUser(object id)
         {
             unitOfWork.UserRepository.Delete(id);
             return View();
